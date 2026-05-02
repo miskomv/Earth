@@ -1,0 +1,36 @@
+name = "universe-api"
+main = "src/index.ts"
+compatibility_date = "2025-04-01"
+compatibility_flags = ["nodejs_compat"]
+
+# KV cache for external API responses.
+#
+# Create your own namespace before deploying and paste the printed id below
+# (both `id` and `preview_id`):
+#   $ npx wrangler kv namespace create CACHE
+# Local dev with `wrangler dev` works without a real id (Miniflare simulates
+# KV from disk).
+[[kv_namespaces]]
+binding = "UNVERSE_CACHE"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+preview_id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Run scheduled refreshers so users always hit warm cache.
+#
+# Cloudflare Workers caps cron triggers per Worker at 3 on the Free plan
+# (5 on Paid). We pick the 3 fastest-changing feeds; the slower ones (NEO,
+# SBDB) ride along: NEO refreshes inside the TLE cron handler, and SBDB
+# refreshes lazily on first user hit (24h TTL absorbs the cold start).
+[triggers]
+crons = [
+  "*/5 * * * *",  # USGS quakes every 5min
+  "*/15 * * * *", # NHC hurricanes every 15min
+  "0 */3 * * *"   # TLEs + NEO every 3h
+]
+
+[vars]
+# Comma-separated hostname suffix list. Each entry matches its exact host
+# plus any subdomain — e.g. `your-site.pages.dev` covers both the canonical
+# Pages URL and every per-deployment preview (`<hash>.your-site.pages.dev`).
+# Use `*` to allow any origin (fine for a public read-only API).
+ALLOWED_ORIGINS = "*"

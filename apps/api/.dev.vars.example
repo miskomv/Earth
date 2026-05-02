@@ -1,0 +1,10 @@
+# Copy to `apps/api/.dev.vars` to override values during local `wrangler dev`.
+# `.dev.vars` is git-ignored.
+
+# Optional: only needed if you want the live cloud-tile proxy at
+# /api/weather/clouds/... Get a free key at https://openweathermap.org/api.
+# OPENWEATHER_API_KEY=
+
+# Optional: comma-separated list of allowed CORS hostnames. Each entry matches
+# the exact host plus any subdomain. Use `*` for any origin.
+# ALLOWED_ORIGINS=*
