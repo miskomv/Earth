@@ -2,6 +2,8 @@
 
 Real-time 3D Earth visualization rendered in the browser with WebGL: surrounding asteroids, comets, satellites, the ISS, plus active hurricanes and earthquakes, the Sun, the Moon and the inner planets — all positioned from real orbital mechanics.
 
+![Universe preview](https://wsrv.nl/?n=-1&output=webp&url=https%3A%2F%2Fiili.io%2FBLn8s9e.png)
+
 ## Stack
 
 - **API** (`apps/api/`) — [Hono](https://hono.dev) on Cloudflare Workers, KV cache with stale-while-revalidate, scheduled refresh via Cron Triggers.
