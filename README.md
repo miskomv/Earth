@@ -1,4 +1,4 @@
-# Universe
+# Earth
 
 Real-time 3D Earth visualization rendered in the browser with WebGL: surrounding asteroids, comets, satellites, the ISS, plus active hurricanes and earthquakes, the Sun, the Moon and the inner planets — all positioned from real orbital mechanics.
 
